@@ -116,6 +116,7 @@ class Messages extends CI_Controller {
 
         $memvers = $this->mailchimp_library->get("lists/$list_id/members");
         $data['contactdata'] = $memvers;
+         $data['listid'] = $list_id;
         $this->db->where('m_id', $list_id);
         $query = $this->db->get('mailchimp_list');
         $resultdata = $query->row();
