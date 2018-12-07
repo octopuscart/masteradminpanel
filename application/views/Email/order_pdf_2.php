@@ -2,7 +2,7 @@
     <tr >
         <td style="text-align: center;">
     <center> <img src="<?php echo site_mail_logo; ?> " style="margin: 10px auto;
-                  height: 50px;background: black;
+                  height: 50px;
                   width: auto;"/></center>
 
 
@@ -17,7 +17,7 @@
 <h3 style="text-align: center">
 
     <center>
-        <img src="https://images.freeimages.com/images/premium/previews/4861/48614230-winter-offer-colorful-vector-icon-design.jpg" style="height: 200px">
+        <img src="https://costcointernational.com/costcokartfiles/costcooffer.jpg" style="height: 500px">
 
     </center>
 </h3>
@@ -31,3 +31,9 @@ As one of Hong Kong's leading custom tailors, we are proud of our international 
 echo email_footer;
 
 ?>
+
+<div style="float: left;width: 100%;height: 700px;"></div>
+<hr/>
+
+<pre></pre>
+<br/>

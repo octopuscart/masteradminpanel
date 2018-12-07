@@ -39,6 +39,12 @@ define('message_header', $globleConnectReport['message_header']);
 define('report_mode', $globleConnectReport['report_mode']);
 
 
+//mailchimp  Settings//
+define('MAILCHIMP_APIKEY', $configuration['mailchimp_apikey']);
+define('MAILCHIMP_APIENDPOINT', $configuration['mailchimp_apiendpoint']);
+;
+
+
 
 /*
   |--------------------------------------------------------------------------

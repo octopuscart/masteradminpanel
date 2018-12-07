@@ -2,7 +2,7 @@
     <tr >
         <td style="text-align: center;">
     <center> <img src="<?php echo site_mail_logo; ?> " style="margin: 10px auto;
-                  height: 50px;background: black;
+                  height: 50px;
                   width: auto;"/></center>
 
 
