@@ -28,9 +28,9 @@ $this->load->view('layout/layoutTop');
                     </div>
                     <div class="box-body no-padding">
                         <ul class="nav nav-pills">
-                            <li><a href="<?php echo site_url("Messages/createTemplate/1"); ?>"><i class="fa fa-circle-o text-red"></i> News Letter</a></li>
-                            <li><a href="<?php echo site_url("Messages/createTemplate/2"); ?>"><i class="fa fa-circle-o text-yellow"></i> Offer Template</a></li>
-                            <li><a href="<?php echo site_url("Messages/createTemplate/3"); ?>"><i class="fa fa-circle-o text-light-blue"></i> Event Template</a></li>
+                            <li><a href="<?php echo site_url("Messages/createTemplate/".$listid."/1"); ?>"><i class="fa fa-circle-o text-red"></i> News Letter</a></li>
+                            <li><a href="<?php echo site_url("Messages/createTemplate/".$listid."/2"); ?>"><i class="fa fa-circle-o text-yellow"></i> Offer Template</a></li>
+                            <li><a href="<?php echo site_url("Messages/createTemplate/".$listid."/3"); ?>"><i class="fa fa-circle-o text-light-blue"></i> Event Template</a></li>
                         </ul>
                     </div>
 
@@ -74,16 +74,16 @@ $this->load->view('layout/layoutTop');
                                 <input class="form-control" placeholder="Subject:" name="subject" required="" value="<?php
                             switch ($lattertype) {
                                 case "1":
-                                    echo "Costcokart Newsletter";
+                                    echo email_sender_name. " Newsletter";
                                     break;
                                 case "2":
-                                    echo "Costcokart Offers";
+                                    echo email_sender_name." Offers";
                                     break;
                                 case "3":
-                                    echo "Costcokart Appointment";
+                                    echo email_sender_name." Appointment";
                                     break;
                                 default:
-                                    echo "Costcokart Newsletter";
+                                    echo email_sender_name." Newsletter";
                             }
                             ?>">
                             </div>
