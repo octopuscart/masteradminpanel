@@ -37,9 +37,10 @@ class Messages extends CI_Controller {
     public function getContactList() {
 
         $result = $this->mailchimp_library->get('lists');
+        $this->db->order_by("display_index", "asc");
         $query = $this->db->get('mailchimp_list');
         $resultdata = $query->result_array();
-        $contactarray = [];
+        $contactarray = $resultdata;
 
 
 
@@ -63,8 +64,11 @@ class Messages extends CI_Controller {
                         'datetime' => $date_created,
                         'member_count' => $member_count | 0,
                     );
-
-                    array_push($contactarray, $mlistarray);
+                    $this->db->set('member_count', $member_count);
+                    $this->db->set('name', $name);
+                    $this->db->where('m_id', $id); //set column_name and value in which row need to update
+                    $this->db->update('mailchimp_list');
+                    
                 }
                 if (count($resultdata)) {
                     $this->db->set('member_count', $member_count);
@@ -116,7 +120,7 @@ class Messages extends CI_Controller {
 
         $memvers = $this->mailchimp_library->get("lists/$list_id/members");
         $data['contactdata'] = $memvers;
-         $data['listid'] = $list_id;
+        $data['listid'] = $list_id;
         $this->db->where('m_id', $list_id);
         $query = $this->db->get('mailchimp_list');
         $resultdata = $query->row();
