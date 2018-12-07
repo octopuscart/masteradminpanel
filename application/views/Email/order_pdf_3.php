@@ -19,7 +19,7 @@
 
 Dear Customer,
 <br/>
-We happy for inform you, our  Tailor is visiting in London on Friday, 12 Dec 2018, 05:00 PM at the InterContinental London Park Lane.
+We happy for inform you, our tailor is visiting in London on Friday, 12 Dec 2018, 05:00 PM at the InterContinental London Park Lane.
 <br/>
 You can contact our sales representatives on their local cell (0000000000) which will be active during tour dates only or email: sales@costcokart.com to make an appointment.
 
