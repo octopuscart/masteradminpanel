@@ -67,7 +67,11 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'j2k5e6r5_octopus',
 	'password' => 'India$2017',
+<<<<<<< HEAD
 	'database' => 'j2k5e6r5_costcokart',
+=======
+	'database' => 'j2k5e6r5_octpuscartshop',
+>>>>>>> 682f5af3f2886a27009f79d19fe9edbb1b8f9500
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
