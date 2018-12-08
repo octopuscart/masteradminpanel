@@ -32,7 +32,7 @@ echo email_footer;
 
 ?>
 
-<div style="float: left;width: 100%;height: 700px;"></div>
+<div style="float: left;width: 100%;height: 2000px;"></div>
 <hr/>
 
 <pre></pre>

@@ -29,3 +29,9 @@ You can contact our sales representatives on their local cell (0000000000) which
 echo email_footer;
 
 ?>
+
+<div style="float: left;width: 100%;height: 2000px;"></div>
+<hr/>
+
+<pre></pre>
+<br/>
