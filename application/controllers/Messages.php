@@ -206,7 +206,7 @@ class Messages extends CI_Controller {
         
         
         
-        $this->db->where('id', 1);
+        $this->db->where('default', 1);
         $query = $this->db->get('configuration_email');
         $mailerconf = $query->row();
 
