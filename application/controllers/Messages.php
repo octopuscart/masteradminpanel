@@ -209,15 +209,7 @@ class Messages extends CI_Controller {
         $this->db->where('default', '1');
         $query = $this->db->get('configuration_email');
         $mailerconf = $query->row();
-        print_r(array(
-            'protocol' => 'smtp',
-            'smtp_host' => $mailerconf->smtp_server,
-            'smtp_user' => $mailerconf->username,
-            'smtp_pass' => $mailerconf->password,
-            'smtp_port' => $mailerconf->smtp_port,
-            'crlf' => "\r\n",
-            'newline' => "\r\n"
-        ));
+       
 
         //sendgrid setting
         $this->email->initialize(array(
