@@ -17,7 +17,7 @@
 
 <hr/>
 
-Dear Customer,
+Dear {first_name} {last_name},
 <br/>
 We happy for inform you, our tailor is visiting in London on Friday, 12 Dec 2018, 05:00 PM at the InterContinental London Park Lane.
 <br/>
@@ -25,9 +25,7 @@ You can contact our sales representatives on their local cell (0000000000) which
 
 <hr/>
 <?php
-
 echo email_footer;
-
 ?>
 
 <div style="float: left;width: 100%;height: 2000px;"></div>

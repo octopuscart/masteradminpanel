@@ -9,11 +9,11 @@ function checkPermission($session_data) {
     if ($session_data['user_type'] == 'Manager') {
         return "system";
     }
-    
+
     if ($session_data['user_type'] == 'Developer') {
         return "system";
     }
-    
+
     if ($session_data['user_type'] == 'Vendor') {
         return "vendor";
     }
@@ -117,11 +117,11 @@ function checkPermission($session_data) {
                 </a>
                 <ul class="treeview-menu">
 
-                                        <li>
-                                            <a href="<?php echo base_url(); ?>index.php/ProductManager/add_product">
-                                                <i class="active fa fa-plus "></i> <span>Add Product</span>
-                                            </a>
-                                        </li>   
+                    <li>
+                        <a href="<?php echo base_url(); ?>index.php/ProductManager/add_product">
+                            <i class="active fa fa-plus "></i> <span>Add Product</span>
+                        </a>
+                    </li>   
                     <li>
                         <a href="<?php echo base_url(); ?>index.php/ProductManager/productReport">
                             <i class="active fa fa-plus "></i> <span>Product Reports</span>
@@ -136,23 +136,23 @@ function checkPermission($session_data) {
                                 <i class="active fa fa-plus "></i> <span>Categories</span>
                             </a>
                         </li>    
-                        
-                        
+
+
                         <li>
                             <a href="<?php echo base_url(); ?>index.php/ProductManager/categoryItems">
                                 <i class="active fa fa-plus "></i> <span>Items Prices</span>
                             </a>
                         </li>  
-                        
+
                         <?php
-                        if($session_data['user_type']=='Developer'){
-                        ?>
-                        <li>
-                            <a href="<?php echo base_url(); ?>index.php/ProductManager/createAttribute">
-                                <i class="active fa fa-plus "></i> <span>Attributes</span>
-                            </a>
-                        </li>   
-                        <?php
+                        if ($session_data['user_type'] == 'Developer') {
+                            ?>
+                            <li>
+                                <a href="<?php echo base_url(); ?>index.php/ProductManager/createAttribute">
+                                    <i class="active fa fa-plus "></i> <span>Attributes</span>
+                                </a>
+                            </li>   
+                            <?php
                         }
                         ?>
                         <!--end of admin access-->
@@ -198,14 +198,19 @@ function checkPermission($session_data) {
                     </a>
                     <ul class="treeview-menu">
                         <!--Admin Access-->
-                        
+
                         <li>
-                            <a href="<?php echo site_url("Messages/getContactList")?>">
-                                <i class="active fa fa-plus "></i> <span>Send Mail/Newsletter</span>
+                            <a href="<?php echo site_url("Messages/getContactList") ?>">
+                                <i class="active fa fa-plus "></i> <span>Send Mail/Newsletter (Prm.)</span>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="<?php echo site_url("Messages/getContactListTxn") ?>">
+                                <i class="active fa fa-plus "></i> <span>Send Mail/Newsletter (Txn.)</span>
                             </a>
                         </li>
 
-                          
+
                         <!--end of admin access-->
                     </ul>
                 </li>

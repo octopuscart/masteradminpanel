@@ -118,7 +118,7 @@ function userReportFunction($users) {
                     <ul class="list-group">
                         <?php
                         foreach ($contactdata as $key => $value) {
-                            $mid = $value['m_id'];
+                            $mid = $value['id'];
                             $mname = $value['name'];
                             ?>
 
@@ -135,7 +135,7 @@ function userReportFunction($users) {
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addContact" ng-click="contactSelect('<?php echo $mid;?>', '<?php echo $mname;?>')">
                                     <i class="fa fa-plus"></i> Add Contact
                                 </button>
-                                <a href="<?php echo site_url("Messages/createTemplate/" . $mid . "/1"); ?>" class="btn btn-success btn-sm"><i class="fa fa-envelope"></i> Send Mail</a>
+                                <a href="<?php echo site_url("Messages/sendMailThirdParty/" . $mid . "/1"); ?>" class="btn btn-success btn-sm"><i class="fa fa-envelope"></i> Send Mail</a>
                             </li>
 
                             <?php
