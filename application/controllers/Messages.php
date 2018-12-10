@@ -142,8 +142,8 @@ class Messages extends CI_Controller {
                 'recipients' => array("list_id" => $list_id),
                 "type" => "regular",
                 "settings" => array("subject_line" => $subject,
-                    "reply_to" => "tailor123hk@gmail.com",
-                    "from_name" => "Cotcokart.com")
+                    "reply_to" => email_bcc,
+                    "from_name" => email_sender_name)
             ]);
 
             $comp_id = $result['id'];
