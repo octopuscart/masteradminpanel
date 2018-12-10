@@ -245,7 +245,7 @@ class Messages extends CI_Controller {
                 $first_name = $value['first_name'];
                 $ftemplate = $this->parser->parse_string($emailtemplate, $value);
                 //echo $ftemplate;
-                $this->email->from('info@cctailor.com', 'CC Tailor');
+                $this->email->from(email_bcc, email_sender_name);
                 $this->email->to($emailaddr);
                 $this->email->subject($subject);
                 $this->email->message($ftemplate);
@@ -309,7 +309,7 @@ class Messages extends CI_Controller {
 
 
 
-        $this->email->from('sales@costcointernational.com', "Costco International Ltd.");
+        $this->email->from(email_bcc, email_sender_name);
         $this->email->to($receiver_email);
         $this->email->subject('Email from CC Tailor Hong Kong');
         $this->email->message('Hello this CC Tailor Newsletter Hong Kong');
