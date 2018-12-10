@@ -160,9 +160,8 @@ class Messages extends CI_Controller {
 
         $this->load->view('Email/create_template', $data);
     }
+
     //end of mailchimp
-
-
     //start of sendgrid mailer
     public function getContactListTxn() {
         $this->db->order_by("display_index", "asc");
@@ -204,27 +203,25 @@ class Messages extends CI_Controller {
 
         $this->load->library('parser');
         $this->load->library('email');
+        
+        
+        
+        $this->db->where('id', 1);
+        $query = $this->db->get('configuration_email');
+        $mailerconf = $query->row();
 
         //sendgrid setting
-//        $this->email->initialize(array(
-//            'protocol' => 'smtp',
-//            'smtp_host' => 'smtp.sendgrid.net',
-//            'smtp_user' => 'octopuscartltd@gmail.com',
-//            'smtp_pass' => 'India$2018',
-//            'smtp_port' => 587,
-//            'crlf' => "\r\n",
-//            'newline' => "\r\n"
-//        ));
-        
         $this->email->initialize(array(
             'protocol' => 'smtp',
-            'smtp_host' => 'ssl://costcointernational.com',
-            'smtp_user' => 'manager@costcointernational.com',
-            'smtp_pass' => 'India$2018',
-            'smtp_port' => 465,
+            'smtp_host' => $mailerconf->smtp_server,
+            'smtp_user' => $mailerconf->username,
+            'smtp_pass' => $mailerconf->password,
+            'smtp_port' => $mailerconf->smtp_port,
             'crlf' => "\r\n",
             'newline' => "\r\n"
         ));
+
+       
 
 
         $data['contactlist'] = $contactdata;
@@ -294,44 +291,74 @@ class Messages extends CI_Controller {
         $this->load->library('email');
         $receiver_email = "octopuscartltd@gmail.com";
         //sendgrid setting
-        $this->email->initialize(array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'smtp.sendgrid.net',
-            'smtp_user' => 'octopuscartltd@gmail.com',
-            'smtp_pass' => 'India$2018',
-            'smtp_port' => 587,
-            'crlf' => "\r\n",
-            'newline' => "\r\n"
-        ));
+        $this->db->where('id', 1);
+        $query = $this->db->get('configuration_email');
+        $mailerconf = $query->row();
 
-//        gmail setting
-//        $this->email->initialize(array(
-//            'protocol' => 'smtp',
-//            'smtp_host' => 'ssl://smtp.googlemail.com',
-//            'smtp_user' => 'tailor123hk@gmail.com',
-//            'smtp_pass' => 'dedkfkyvvjooevli',
-//            'smtp_port' => 465,
-//            'crlf' => "\r\n",
-//            'newline' => "\r\n"
-//        ));
+        //sendgrid setting
         $this->email->initialize(array(
             'protocol' => 'smtp',
-            'smtp_host' => 'ssl://costcointernational.com',
-            'smtp_user' => 'manager@costcointernational.com',
-            'smtp_pass' => 'India$2018',
-            'smtp_port' => 465,
+            'smtp_host' => $mailerconf->smtp_server,
+            'smtp_user' => $mailerconf->username,
+            'smtp_pass' => $mailerconf->password,
+            'smtp_port' => $mailerconf->smtp_port,
             'crlf' => "\r\n",
             'newline' => "\r\n"
         ));
 
 
-        $this->email->from('info@cctailor.com', 'CC Tailor');
+
+
+        $this->email->from('sales@costcointernational.com', "Costco International Ltd.");
         $this->email->to($receiver_email);
         $this->email->subject('Email from CC Tailor Hong Kong');
         $this->email->message('Hello this CC Tailor Newsletter Hong Kong');
         $this->email->send();
 
         echo $this->email->print_debugger();
+    }
+
+    public function sendMailChimpSingleMail($param) {
+        
+        $apikey = MAILCHIMP_APIKEY;
+        $apiendpoint = MAILCHIMP_APIENDPOINT;
+     
+
+        $to_emails = array('you@example.com', 'your_mom@example.com');
+        $to_names = array('You', 'Your Mom');
+
+        $message = array(
+            'html' => 'Yo, this is the <b>html</b> portion',
+            'text' => 'Yo, this is the *text* portion',
+            'subject' => 'This is the subject',
+            'from_name' => 'Me!',
+            'from_email' => 'verifed@example.com',
+            'to_email' => $to_emails,
+            'to_name' => $to_names
+        );
+
+        $tags = array('WelcomeEmail');
+
+        $params = array(
+            'apikey' => $apikey,
+            'message' => $message,
+            'track_opens' => true,
+            'track_clicks' => false,
+            'tags' => $tags
+        );
+
+        $url = "$apiendpoint/SendEmail";
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url . '?' . http_build_query($params));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $result = curl_exec($ch);
+        echo $result;
+        curl_close($ch);
+
+        $data = json_decode($result);
+        echo "Status = " . $data->status . "\n";
     }
 
 }
