@@ -175,15 +175,17 @@ class Messages extends CI_Controller {
             $email_address = $this->input->post("email_address");
             $first_name = $this->input->post("first_name");
             $last_name = $this->input->post("last_name");
+            $listid = $this->input->post("listid");
             $mailer_contacts = array(
                 "email" => $email_address,
                 "first_name" => $first_name,
                 "last_name" => $last_name,
                 "status" => '1',
-                "mailer_list_id" => $list_id,
+                "mailer_list_id" => $listid,
                 "datetime" => ""
             );
             $this->db->insert('mailer_contacts', $mailer_contacts);
+            redirect("Messages/getContactListTxn");
         }
         $this->load->view('Email/contactlisttxn', $data);
     }
@@ -204,12 +206,22 @@ class Messages extends CI_Controller {
         $this->load->library('email');
 
         //sendgrid setting
+//        $this->email->initialize(array(
+//            'protocol' => 'smtp',
+//            'smtp_host' => 'smtp.sendgrid.net',
+//            'smtp_user' => 'octopuscartltd@gmail.com',
+//            'smtp_pass' => 'India$2018',
+//            'smtp_port' => 587,
+//            'crlf' => "\r\n",
+//            'newline' => "\r\n"
+//        ));
+        
         $this->email->initialize(array(
             'protocol' => 'smtp',
-            'smtp_host' => 'smtp.sendgrid.net',
-            'smtp_user' => 'octopuscartltd@gmail.com',
+            'smtp_host' => 'ssl://costcointernational.com',
+            'smtp_user' => 'manager@costcointernational.com',
             'smtp_pass' => 'India$2018',
-            'smtp_port' => 587,
+            'smtp_port' => 465,
             'crlf' => "\r\n",
             'newline' => "\r\n"
         ));
@@ -231,8 +243,7 @@ class Messages extends CI_Controller {
         if (isset($_POST['sendmail'])) {
             $emailtemplate = $this->input->post("emailtemplate");
             $subject = $this->input->post("subject");
-
-            foreach ($emaillist as $key => $value) {
+            foreach ($contactdata as $key => $value) {
                 $emailaddr = $value['email'];
                 $first_name = $value['first_name'];
                 $ftemplate = $this->parser->parse_string($emailtemplate, $value);
@@ -242,7 +253,7 @@ class Messages extends CI_Controller {
                 $this->email->subject($subject);
                 $this->email->message($ftemplate);
                 $this->email->send();
-                //echo $this->email->print_debugger();
+                echo $this->email->print_debugger();
             }
             redirect("Messages/sendMailThirdParty/$list_id/$lattertype");
         }
@@ -303,15 +314,15 @@ class Messages extends CI_Controller {
 //            'crlf' => "\r\n",
 //            'newline' => "\r\n"
 //        ));
-//        $this->email->initialize(array(
-//            'protocol' => 'smtp',
-//            'smtp_host' => 'ssl://costcointernational.com',
-//            'smtp_user' => 'manager@costcointernational.com',
-//            'smtp_pass' => 'India$2018',
-//            'smtp_port' => 465,
-//            'crlf' => "\r\n",
-//            'newline' => "\r\n"
-//        ));
+        $this->email->initialize(array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://costcointernational.com',
+            'smtp_user' => 'manager@costcointernational.com',
+            'smtp_pass' => 'India$2018',
+            'smtp_port' => 465,
+            'crlf' => "\r\n",
+            'newline' => "\r\n"
+        ));
 
 
         $this->email->from('info@cctailor.com', 'CC Tailor');

@@ -162,23 +162,31 @@ function userReportFunction($users) {
 <div class="modal fade" id="addContact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="#" method="post">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Add New Contact - {{contactDict.listname}}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label >Email Addresss</label>
-                        <input type="email"  required="" class="form-control" name="email_address"  aria-describedby="emailHelp" placeholder="">
-                        <input type="hidden" name="listid" value="{{contactDict.listid}}">
+           <form action="#" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add New Contact - {{contactDict.listname}}</h4>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" name="addcontact" class="btn btn-primary">Save Contact</button>
-                </div>
-            </form>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label >Email Addresss</label>
+                            <input type="email"  required="" class="form-control" name="email_address"  aria-describedby="emailHelp" placeholder="">
+                        <input type="hidden" name="listid" value="{{contactDict.listid}}">
+                        </div>
+                        <div class="form-group">
+                            <label >First Name</label>
+                            <input type="text"  class="form-control" name="first_name"  aria-describedby="emailHelp" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label >Last Name</label>
+                            <input type="text" class="form-control" name="last_name"  aria-describedby="emailHelp" placeholder="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" name="addcontact" class="btn btn-primary">Save Contact</button>
+                    </div>
+                </form>
         </div>
 
     </div>
