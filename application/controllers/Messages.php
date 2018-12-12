@@ -194,10 +194,26 @@ class Messages extends CI_Controller {
         $this->db->where('id', $list_id);
         $query = $this->db->get('mailer_list');
         $mailerobj = $query->row();
+        
+        $this->db->select('email');
+        $query = $this->db->get('mailer_contacts2_check');
+        $mmailer_contacts2_check = $query->result();
+        
+        $emailcheck =array();
+        
+        foreach ($mmailer_contacts2_check as $key => $value) {
+            array_push($emailcheck, $value->email);
+        }
+        
+        
+        
         $data['mailerobj'] = $mailerobj;
 
+        $ignore = $emailcheck;
         $this->db->where('status', 1);
         $this->db->where('mailer_list_id', $list_id);
+
+        $this->db->where_not_in('mailer_contacts2.email', $ignore);
         $this->db->group_by('email');
         $query = $this->db->get('mailer_contacts2');
         $contactdata = $query->result_array();
