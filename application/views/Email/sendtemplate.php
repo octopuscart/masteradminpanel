@@ -147,6 +147,9 @@ $this->load->view('layout/layoutTop');
                                             <?php echo $mvalue['email']; ?>
                                         </td>
                                         <td>
+                                            <?php echo $mvalue['full_name']; ?>
+                                        </td>
+                                        <td>
                                             <?php echo $mvalue['first_name']; ?>
                                         </td>
                                         <td>

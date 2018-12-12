@@ -244,7 +244,7 @@ class Messages extends CI_Controller {
             $subject = $this->input->post("subject");
             foreach ($contactdata as $key => $value) {
                 $emailaddr = $value['email'];
-                $first_name = $value['first_name'];
+                $first_name = $value['full_name'];
                 $ftemplate = $this->parser->parse_string($emailtemplate, $value);
                 //echo $ftemplate;
                 $this->email->from(email_bcc, email_sender_name);
