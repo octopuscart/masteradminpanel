@@ -198,19 +198,19 @@ class Messages extends CI_Controller {
 
         $this->db->where('status', 1);
         $this->db->where('mailer_list_id', $list_id);
-        $this->db->group_by('email'); 
+        $this->db->group_by('email');
         $query = $this->db->get('mailer_contacts2');
         $contactdata = $query->result_array();
 
         $this->load->library('parser');
         $this->load->library('email');
-        
-        
-        
+
+
+
         $this->db->where('default', '1');
         $query = $this->db->get('configuration_email');
         $mailerconf = $query->row();
-       
+
 
         //sendgrid setting
         $this->email->initialize(array(
@@ -223,7 +223,7 @@ class Messages extends CI_Controller {
             'newline' => "\r\n"
         ));
 
-       
+
 
 
         $data['contactlist'] = $contactdata;
@@ -251,8 +251,21 @@ class Messages extends CI_Controller {
                 $this->email->to($emailaddr);
                 $this->email->subject($subject);
                 $this->email->message($ftemplate);
-                $this->email->send();
-                echo $this->email->print_debugger();
+                $checksend = $this->email->send();
+                if ($checksend) {
+                    $mstatus = "Send";
+                } else {
+                    $mstatus = $this->email->print_debugger();
+                }
+
+
+                $mailer_contacts2_check = array(
+                    "email" => $email_address,
+                    "status" => $mstatus,
+                    "mailer_contact_id" => $value['id'],
+                    "datetime" => date('Y-m-d H:M:S')
+                );
+                $this->db->insert('mailer_contacts2_check', $mailer_contacts2_check);
             }
             redirect("Messages/sendMailThirdParty/$list_id/$lattertype");
         }
@@ -265,7 +278,7 @@ class Messages extends CI_Controller {
             $mailer_contacts = array(
                 "email" => $email_address,
                 "first_name" => $first_name,
-                "full_name" => $first_name. " " .$last_name,
+                "full_name" => $first_name . " " . $last_name,
                 "last_name" => $last_name,
                 "status" => '1',
                 "mailer_list_id" => $list_id,
@@ -322,10 +335,10 @@ class Messages extends CI_Controller {
     }
 
     public function sendMailChimpSingleMail($param) {
-        
+
         $apikey = MAILCHIMP_APIKEY;
         $apiendpoint = MAILCHIMP_APIENDPOINT;
-     
+
 
         $to_emails = array('you@example.com', 'your_mom@example.com');
         $to_names = array('You', 'Your Mom');
