@@ -270,7 +270,7 @@ class Messages extends CI_Controller {
                 "mailer_list_id" => $list_id,
                 "datetime" => ""
             );
-            $this->db->insert('mailer_contacts', $mailer_contacts);
+            $this->db->insert('mailer_contacts2', $mailer_contacts);
 
             redirect("Messages/sendMailThirdParty/$list_id/$lattertype");
         }
