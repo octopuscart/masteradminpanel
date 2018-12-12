@@ -130,6 +130,7 @@ $this->load->view('layout/layoutTop');
                                 <tr>
 
                                     <th style="width: 100px;">Email </th>
+                                    <th style="width: 100px;">Full Name </th>
                                     <th style="width: 100px;">First Name </th>
                                     <th style="width: 100px;">Last Name </th>
                                     <th style="width: 100px;">Status </th>

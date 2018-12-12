@@ -198,6 +198,7 @@ class Messages extends CI_Controller {
 
         $this->db->where('status', 1);
         $this->db->where('mailer_list_id', $list_id);
+        $this->db->group_by('email'); 
         $query = $this->db->get('mailer_contacts2');
         $contactdata = $query->result_array();
 
