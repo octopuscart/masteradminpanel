@@ -260,7 +260,7 @@ class Messages extends CI_Controller {
 
 
                 $mailer_contacts2_check = array(
-                    "email" => $email_address,
+                    "email" => $emailaddr,
                     "status" => $mstatus,
                     "mailer_contact_id" => $value['id'],
                     "datetime" => date('Y-m-d H:M:S')
