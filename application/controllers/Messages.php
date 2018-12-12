@@ -166,7 +166,7 @@ class Messages extends CI_Controller {
     public function getContactListTxn() {
         $this->db->order_by("display_index", "asc");
         $query = $this->db->get('mailer_list');
-        $query = $this->db->query("select ml.*, (select count(mc.id) from mailer_contacts as mc where mc.mailer_list_id  = ml.id) as total_members from mailer_list as ml order by ml.display_index");
+        $query = $this->db->query("select ml.*, (select count(mc.id) from mailer_contacts2 as mc where mc.mailer_list_id  = ml.id) as total_members from mailer_list as ml order by ml.display_index");
         $resultdata = $query->result_array();
         $contactarray = $resultdata;
         $data['contactdata'] = $contactarray;
@@ -198,7 +198,7 @@ class Messages extends CI_Controller {
 
         $this->db->where('status', 1);
         $this->db->where('mailer_list_id', $list_id);
-        $query = $this->db->get('mailer_contacts');
+        $query = $this->db->get('mailer_contacts2');
         $contactdata = $query->result_array();
 
         $this->load->library('parser');

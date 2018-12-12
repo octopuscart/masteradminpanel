@@ -86,7 +86,7 @@ $this->load->view('layout/layoutTop');
 
                                             break;
                                         case "2":
-                                            echo $html = $this->load->view('Email/order_pdf_2', $order_details, true);
+                                            echo $html = $this->load->view('mailtemplate/template2', $order_details, true);
 
                                             break;
                                         case "3":
