@@ -64,7 +64,7 @@ $this->load->view('layout/layoutTop');
                                 <input class="form-control" placeholder="Subject:" name="subject" required="" value="<?php
                                 switch ($lattertype) {
                                     case "1":
-                                        echo email_sender_name . " Newsletter";
+                                        echo email_sender_name . " Wishing You Merry Christmas and Happy New Year!";
                                         break;
                                     case "2":
                                         echo email_sender_name . " Offers";
@@ -82,7 +82,7 @@ $this->load->view('layout/layoutTop');
                                     <?php
                                     switch ($lattertype) {
                                         case "1":
-                                            echo $html = $this->load->view('Email/order_pdf_1', $order_details, true);
+                                            echo $html = $this->load->view('mailtemplate/template1', $order_details, true);
 
                                             break;
                                         case "2":
