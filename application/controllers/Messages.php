@@ -265,6 +265,7 @@ class Messages extends CI_Controller {
             $mailer_contacts = array(
                 "email" => $email_address,
                 "first_name" => $first_name,
+                "full_name" => $first_name. " " .$last_name,
                 "last_name" => $last_name,
                 "status" => '1',
                 "mailer_list_id" => $list_id,
