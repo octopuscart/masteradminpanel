@@ -112,7 +112,9 @@
                                     <!--img-->
                                     <tr>
                                         <td align="center" style="line-height: 0px;">
+                                            <a href="http://www.cctailor.com/" target="_blank" style="color:#fff">
                                             <img style="display:block; line-height:0px; font-size:0px; border:0px;border-radius: 30px;" class="img1" src="https://costcointernational.com/cctailorsfiles/template2/wishing.jpg" alt="img" width="100%" height="auto" />
+                                            </a>
                                         </td>
                                     </tr>
                                     <!--end img-->
