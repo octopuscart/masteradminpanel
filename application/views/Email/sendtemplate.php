@@ -67,7 +67,7 @@ $this->load->view('layout/layoutTop');
                                         echo email_sender_name . " Wishing You Merry Christmas and Happy New Year!";
                                         break;
                                     case "2":
-                                        echo email_sender_name . " Offers";
+                                        echo email_sender_name . " Wishing You Merry Christmas and Happy New Year!";
                                         break;
                                     case "3":
                                         echo email_sender_name . " Appointment";
@@ -78,8 +78,7 @@ $this->load->view('layout/layoutTop');
                                 ?>">
                             </div>
                             <div class="form-group">
-                                <textarea id="compose-textarea" name="emailtemplate" class="form-control" style="height: 200px">
-                                    <?php
+                                <textarea id="compose-textarea" name="emailtemplate" class="form-control" style="height: 200px"><?php
                                     switch ($lattertype) {
                                         case "1":
                                             echo $html = $this->load->view('mailtemplate/template1', $order_details, true);

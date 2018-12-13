@@ -212,8 +212,9 @@ class Messages extends CI_Controller {
         $ignore = $emailcheck;
         $this->db->where('status', 1);
         $this->db->where('mailer_list_id', $list_id);
-
+if(count($ignore)){
         $this->db->where_not_in('mailer_contacts2.email', $ignore);
+}
         $this->db->group_by('email');
         $query = $this->db->get('mailer_contacts2');
         $contactdata = $query->result_array();
@@ -305,10 +306,14 @@ class Messages extends CI_Controller {
             redirect("Messages/sendMailThirdParty/$list_id/$lattertype");
         }
 
-
-
-
         $this->load->view('Email/sendtemplate', $data);
+    }
+    
+    
+    
+    
+    public function templateTest(){
+        $this->load->view('mailtemplate/template2');
     }
 
     public function removeContactFromList($list_id, $contact_id, $lattertype) {
