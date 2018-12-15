@@ -224,7 +224,7 @@ class Messages extends CI_Controller {
         
         $contactdata = $query->result_array();
         
-        $contactdata = array_chunk($contactdata, 10)[0];
+//        $contactdata = array_chunk($contactdata, 10)[0];
         
 
         $this->load->library('parser');
