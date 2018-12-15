@@ -88,7 +88,7 @@
                                     <!--content-->
                                     <tr>
                                         <td align="left" style="font-family: 'Open sans', Arial, sans-serif; color:black; font-size:16px; line-height: 28px;">
-                                            Dear {first_name},<br/>
+                                            Dear {full_name},<br/>
                                             <p style="color:black">
                                                 We hope to find you in the best of your life, health and success.
                                             </p>

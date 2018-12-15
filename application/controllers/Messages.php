@@ -194,30 +194,36 @@ class Messages extends CI_Controller {
         $this->db->where('id', $list_id);
         $query = $this->db->get('mailer_list');
         $mailerobj = $query->row();
-        
+
         $this->db->select('email');
         $query = $this->db->get('mailer_contacts2_check');
         $mmailer_contacts2_check = $query->result();
-        
-        $emailcheck =array();
-        
+
+        $emailcheck = array();
+
         foreach ($mmailer_contacts2_check as $key => $value) {
             array_push($emailcheck, $value->email);
         }
-        
-        
-        
+
+
+
         $data['mailerobj'] = $mailerobj;
 
         $ignore = $emailcheck;
         $this->db->where('status', 1);
         $this->db->where('mailer_list_id', $list_id);
-if(count($ignore)){
-        $this->db->where_not_in('mailer_contacts2.email', $ignore);
-}
+        
+        if (count($ignore)) {
+            $this->db->where_not_in('mailer_contacts2.email', $ignore);
+        }
         $this->db->group_by('email');
+        
         $query = $this->db->get('mailer_contacts2');
+        
         $contactdata = $query->result_array();
+        
+        //$contactdata = array_chunk($contactdata, 10)[0];
+        
 
         $this->load->library('parser');
         $this->load->library('email');
@@ -268,6 +274,7 @@ if(count($ignore)){
                 $this->email->to($emailaddr);
                 $this->email->subject($subject);
                 $this->email->message($ftemplate);
+                $mstatus=1;
                 $checksend = $this->email->send();
                 if ($checksend) {
                     $mstatus = "Send";
@@ -309,10 +316,119 @@ if(count($ignore)){
         $this->load->view('Email/sendtemplate', $data);
     }
     
-    
-    
-    
-    public function templateTest(){
+    public function sendMailThirdPartyApi($list_id, $lattertype) {
+
+        $this->db->where('id', $list_id);
+        $query = $this->db->get('mailer_list');
+        $mailerobj = $query->row();
+
+        $this->db->select('email');
+        $query = $this->db->get('mailer_contacts2_check');
+        $mmailer_contacts2_check = $query->result();
+
+        $emailcheck = array();
+
+        foreach ($mmailer_contacts2_check as $key => $value) {
+            array_push($emailcheck, $value->email);
+        }
+
+
+
+        $data['mailerobj'] = $mailerobj;
+
+        $ignore = $emailcheck;
+        $this->db->where('status', 1);
+        $this->db->where('mailer_list_id', $list_id);
+        
+        if (count($ignore)) {
+            $this->db->where_not_in('mailer_contacts2.email', $ignore);
+        }
+        $this->db->group_by('email');
+        
+        $query = $this->db->get('mailer_contacts2');
+        
+        $contactdata = $query->result_array();
+        
+        $contactdata = array_chunk($contactdata, 10)[0];
+        
+
+        $this->load->library('parser');
+        $this->load->library('email');
+
+
+
+        $this->db->where('default', '1');
+        $query = $this->db->get('configuration_email');
+        $mailerconf = $query->row();
+
+
+        //sendgrid setting
+        $this->email->initialize(array(
+            'protocol' => 'smtp',
+            'smtp_host' => $mailerconf->smtp_server,
+            'smtp_user' => $mailerconf->username,
+            'smtp_pass' => $mailerconf->password,
+            'smtp_port' => $mailerconf->smtp_port,
+            'crlf' => "\r\n",
+            'newline' => "\r\n"
+        ));
+
+
+
+
+        $data['contactlist'] = $contactdata;
+        $data['lattertype'] = $lattertype;
+        $data['list_id'] = $list_id;
+        $data['exportdata'] = 'yes';
+        $date1 = date('Y-m-') . "01";
+        $date2 = date('Y-m-d');
+        $data['mailstatus'] = "";
+
+        $daterange = $date1 . " to " . $date2;
+        $data['daterange'] = $daterange;
+
+
+
+        if (isset($_GET['sendmail'])) {
+            $emailtemplate = $this->load->view('mailtemplate/template2', $order_details, true);
+            $subject = email_sender_name . " Wishing You Merry Christmas and Happy New Year!";
+            foreach ($contactdata as $key => $value) {
+                $emailaddr = $value['email'];
+                $first_name = $value['full_name'];
+                $ftemplate = $this->parser->parse_string($emailtemplate, $value);
+                //echo $ftemplate;
+                $this->email->from(email_bcc, email_sender_name);
+                $this->email->to($emailaddr);
+                $this->email->subject($subject);
+                $this->email->message($ftemplate);
+                $mstatus=1;
+               // print_r($ftemplate);
+                $checksend = $this->email->send();
+                if ($checksend) {
+                    $mstatus = "Send";
+                } else {
+                    $mstatus = $this->email->print_debugger();
+                }
+
+
+                $mailer_contacts2_check = array(
+                    "email" => $emailaddr,
+                    "status" => $mstatus,
+                    "mailer_contact_id" => $value['id'],
+                    "datetime" => date('Y-m-d H:M:S')
+                );
+                $this->db->insert('mailer_contacts2_check', $mailer_contacts2_check);
+            }
+            redirect("Messages/sendMailThirdPartyApi/$list_id/$lattertype");
+        }
+
+
+        
+
+        $this->load->view('Email/sendtemplate', $data);
+    }
+
+    public function templateTest() {
         $this->load->view('mailtemplate/template2');
     }
 

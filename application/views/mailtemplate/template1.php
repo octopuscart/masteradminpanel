@@ -15,7 +15,7 @@
 <center> 
 <div style="width: 600px;;text-align: left;margin-top: 10px;">
 
-    Dear {first_name},<br/>
+    Dear {full_name},<br/>
     <p>
         We hope to find you in the best of your life, health and success.
     </p>
