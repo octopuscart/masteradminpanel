@@ -209,7 +209,9 @@ class Messages extends CI_Controller {
 
         $data['mailerobj'] = $mailerobj;
 
-        $ignore = $emailcheck;
+        //$ignore = $emailcheck;
+        $ignore = [];
+        
         $this->db->where('status', 1);
         $this->db->where('mailer_list_id', $list_id);
         
@@ -222,7 +224,7 @@ class Messages extends CI_Controller {
         
         $contactdata = $query->result_array();
         
-        //$contactdata = array_chunk($contactdata, 10)[0];
+        $contactdata = array_chunk($contactdata, 10)[0];
         
 
         $this->load->library('parser');
@@ -235,7 +237,7 @@ class Messages extends CI_Controller {
         $mailerconf = $query->row();
 
 
-        //sendgrid setting
+       // sendgrid setting
         $this->email->initialize(array(
             'protocol' => 'smtp',
             'smtp_host' => $mailerconf->smtp_server,
@@ -245,7 +247,28 @@ class Messages extends CI_Controller {
             'crlf' => "\r\n",
             'newline' => "\r\n"
         ));
+        print_r(array(
+            'protocol' => 'smtp',
+            'smtp_host' => $mailerconf->smtp_server,
+            'smtp_user' => $mailerconf->username,
+            'smtp_pass' => $mailerconf->password,
+            'smtp_port' => $mailerconf->smtp_port,
+            'crlf' => "\r\n",
+            'newline' => "\r\n"
+        ));
+//        //Amazon
+//        $this->email->initialize(array(
+//            'protocol' => 'smtp',
+//            'smtp_host' => "ssl://email-smtp.us-east-1.amazonaws.com",
+//            'smtp_user' => "AKIAJFKUSW3BKPPJ2TNA",
+//            'smtp_pass' => "AuNsBWfoNKvcadKTz1kOWZi8x11sMqj2L8teknNaN2MJ",
+//            'smtp_port' => "465",
+//            'crlf' => "\r\n",
+//            'newline' => "\r\n"
+//        ));
 
+        
+        
 
 
 
@@ -276,12 +299,13 @@ class Messages extends CI_Controller {
                 $this->email->message($ftemplate);
                 $mstatus=1;
                 $checksend = $this->email->send();
+                echo $checksend;
                 if ($checksend) {
                     $mstatus = "Send";
                 } else {
                     $mstatus = $this->email->print_debugger();
                 }
-
+print_r($mstatus);
 
                 $mailer_contacts2_check = array(
                     "email" => $emailaddr,
@@ -291,7 +315,7 @@ class Messages extends CI_Controller {
                 );
                 $this->db->insert('mailer_contacts2_check', $mailer_contacts2_check);
             }
-            redirect("Messages/sendMailThirdParty/$list_id/$lattertype");
+            //redirect("Messages/sendMailThirdParty/$list_id/$lattertype");
         }
 
 
