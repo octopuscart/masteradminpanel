@@ -209,8 +209,8 @@ class Messages extends CI_Controller {
 
         $data['mailerobj'] = $mailerobj;
 
-        //$ignore = $emailcheck;
-        $ignore = [];
+        $ignore = $emailcheck;
+//        $ignore = [];
         
         $this->db->where('status', 1);
         $this->db->where('mailer_list_id', $list_id);
