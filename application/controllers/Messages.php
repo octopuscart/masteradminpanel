@@ -247,15 +247,7 @@ class Messages extends CI_Controller {
             'crlf' => "\r\n",
             'newline' => "\r\n"
         ));
-        print_r(array(
-            'protocol' => 'smtp',
-            'smtp_host' => $mailerconf->smtp_server,
-            'smtp_user' => $mailerconf->username,
-            'smtp_pass' => $mailerconf->password,
-            'smtp_port' => $mailerconf->smtp_port,
-            'crlf' => "\r\n",
-            'newline' => "\r\n"
-        ));
+       
 //        //Amazon
 //        $this->email->initialize(array(
 //            'protocol' => 'smtp',
