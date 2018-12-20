@@ -291,13 +291,13 @@ class Messages extends CI_Controller {
                 $this->email->message($ftemplate);
                 $mstatus=1;
                 $checksend = $this->email->send();
-                echo $checksend;
+                
                 if ($checksend) {
                     $mstatus = "Send";
                 } else {
                     $mstatus = $this->email->print_debugger();
                 }
-print_r($mstatus);
+
 
                 $mailer_contacts2_check = array(
                     "email" => $emailaddr,
@@ -484,7 +484,7 @@ print_r($mstatus);
         $this->email->message('Hello this CC Tailor Newsletter Hong Kong');
         $this->email->send();
 
-        echo $this->email->print_debugger();
+         $this->email->print_debugger();
     }
 
     public function sendMailChimpSingleMail($param) {
@@ -523,7 +523,7 @@ print_r($mstatus);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $result = curl_exec($ch);
-        echo $result;
+       
         curl_close($ch);
 
         $data = json_decode($result);
