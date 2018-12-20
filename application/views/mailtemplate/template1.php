@@ -1,9 +1,9 @@
 <table align="center" border="0" cellpadding="0" cellspacing="0" style=""  >
     <tr >
         <td style="text-align: center;">
-    <center> <img src="https://costcointernational.com/cctailorsfiles/h1.jpg " style="margin: 10px auto;
+<!--    <center> <img src="https://costcointernational.com/cctailorsfiles/h1.jpg " style="margin: 10px auto;
 
-                  width: auto;"/></center>
+                  width: auto;"/></center>-->
 
 
 </td>
@@ -37,9 +37,9 @@
 <table align="center" border="0" cellpadding="0" cellspacing="0" style=""  >
     <tr >
         <td style="text-align: center;">
-    <center> <img src="https://costcointernational.com/cctailorsfiles/h2.jpg " style="margin: 10px auto;
+<!--    <center> <img src="https://costcointernational.com/cctailorsfiles/h2.jpg " style="margin: 10px auto;
 
-                  width: auto;"/></center>
+                  width: auto;"/></center>-->
 
 
 </td>

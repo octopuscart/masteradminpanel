@@ -43,7 +43,7 @@
         </style>
     </head>
     <body>
-        <table bgcolor="#8f0100"  style="background: url(https://costcointernational.com/cctailorsfiles/template2/back1.jpg); background-size: auto 100%; background-position:top;" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <table bgcolor="#8f0100"  style="background: url(https://costcointernational.com/cctailorsfiles/template2/back111.jpg); background-size: auto 100%; background-position:top;" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
             <tr>
                 <td height="50"></td>
             </tr>
@@ -52,7 +52,7 @@
                     <table class="table-inner" width="600" border="0" align="center" cellpadding="0" cellspacing="0">
                         <tr>
                             <td align="center" style="line-height: 0px;">
-                                <img style="display:block; line-height:0px; font-size:0px; border:0px;" src="https://costcointernational.com/cctailorsfiles/template2//cctailor.png" alt="logo" />
+                                <img style="display:block; line-height:0px; font-size:0px; border:0px;" src="https://costcointernational.com/cctailorsfiles/template2//cctailor11.png" alt="logo" />
                             </td>
                         </tr>
                         <tr>
@@ -111,11 +111,11 @@
 
                                     <!--img-->
                                     <tr>
-                                        <td align="center" style="line-height: 0px;">
+<!--                                        <td align="center" style="line-height: 0px;">
                                             <a href="http://www.cctailor.com/" target="_blank" style="color:#fff">
                                             <img style="display:block; line-height:0px; font-size:0px; border:0px;border-radius: 30px;" class="img1" src="https://costcointernational.com/cctailorsfiles/template2/wishing.jpg" alt="img" width="100%" height="auto" />
                                             </a>
-                                        </td>
+                                        </td>-->
                                     </tr>
                                     <!--end img-->
                                 </table>
@@ -150,13 +150,13 @@
                                             </table>
                                         </td>
                                         <td height="50" align="center" bgcolor="#520100" style="background: red; background-repeat: repeat-x; background-size: auto; background-position: top;">
-                                            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="red" style="border-radius:6px;">
+<!--                                            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="red" style="border-radius:6px;">
                                                 <tr>
                                                     <td height="50" align="center" class="textbutton" style="font-family: 'Open sans', Arial, sans-serif; color:#FFFFFF; font-size:14px; font-weight: bold;padding-left: 25px;padding-right: 25px;">
                                                         <a href="http://www.cctailor.com/" target="_blank" style="color:#fff">Visit Now</a>
                                                     </td>
                                                 </tr>
-                                            </table>
+                                            </table>-->
                                         </td>
                                         <td class="button-side" width="150" height="50" align="left" valign="bottom">
                                             <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
@@ -190,11 +190,11 @@
                                         <td>
                                             <table class="table-full" width="600" border="0" align="left" cellpadding="0" cellspacing="0">
                                                 <tr>
-                                                    <td align="center" style="font-family: 'Open sans', Arial, sans-serif; color:#FFFFFF; font-size:14px; line-height: 28px;">
+<!--                                                    <td align="center" style="font-family: 'Open sans', Arial, sans-serif; color:#FFFFFF; font-size:14px; line-height: 28px;">
                                                         <b>BESPOKE CHINESE CUSTOM TAILOR</b><br/>
                                                         Shop 22, G/F, Mirador Mansion, <br/>54-64 Nathan Road, TST, Kowloon, Hong Kong<br/>
                                                         <span style="color:#FFFFFF;">Email: info@cctailor.com, Website: www.cctailor.com</span>
-                                                    </td>
+                                                    </td>-->
                                                 </tr>
                                             </table>
                                         </td>
@@ -237,7 +237,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-                                <table width="120" border="0" align="center" cellpadding="0" cellspacing="0">
+<!--                                <table width="120" border="0" align="center" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td align="center" style="line-height: 0px;">
                                             <a href="https://www.facebook.com/CCTailor">
@@ -263,8 +263,8 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    <!--end social-->
-                                </table>
+                                    end social
+                                </table>-->
                             </td>
                         </tr>
                     </table>
