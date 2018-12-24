@@ -95,7 +95,7 @@ class Configuration extends CI_Controller {
                 $user_id = $this->session->userdata('logged_in')['login_id'];
 
                 $this->db->set('title', $this->input->post('title'));
-               
+
                 $this->db->set('line1', $this->input->post('line1'));
                 $this->db->set('title_color', $this->input->post('title_color'));
                 $this->db->set('line1_color', $this->input->post('line1_color'));
@@ -105,7 +105,7 @@ class Configuration extends CI_Controller {
                 $this->db->set('link_text', $this->input->post('link_text'));
                 $this->db->set('position', $this->input->post('position'));
 
-                
+
 
                 $this->db->where('id', $this->input->post('slider_id')); //set column_name and value in which row need to update
                 $this->db->update('sliders');
@@ -271,14 +271,13 @@ class Configuration extends CI_Controller {
         $data['operation'] = $operation;
         $this->load->view('Configuration/add_barcode', $data);
     }
-    
-    
+
     //Add shipping configuration
     function shipping_configuration($shipping_conf_id = 0) {
-        
+
         $query = $this->db->get('payment_barcode');
         $data['sliders'] = $query->result();
-        
+
         $query = $this->db->get('payment_barcode');
         $data['sliders'] = $query->result();
 
@@ -374,6 +373,85 @@ class Configuration extends CI_Controller {
         }
         $data['operation'] = $operation;
         $this->load->view('Configuration/add_barcode', $data);
+    }
+
+    public function migration() {
+        if ($this->db->table_exists('mailchimp_list')) {
+            // table exists
+        } else {
+            $this->db->query('CREATE TABLE IF NOT EXISTS `mailchimp_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `m_id` varchar(100) DEFAULT NULL,
+  `name` varchar(250) DEFAULT NULL,
+  `datetime` varchar(100) DEFAULT NULL,
+  `member_count` varchar(50) NOT NULL,
+  `display_index` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;');
+        }
+
+
+        if ($this->db->table_exists('configuration_email')) {
+            // table exists
+        } else {
+            $this->db->query('CREATE TABLE IF NOT EXISTS `configuration_email` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_type` varchar(200) NOT NULL,
+  `account_name` varchar(100) NOT NULL,
+  `smtp_server` varchar(200) NOT NULL,
+  `username` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `smtp_port` varchar(50) NOT NULL,
+  `api_key` varchar(512) NOT NULL,
+  `api_endpoint` varchar(512) NOT NULL,
+  `default` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;');
+        }
+
+
+        if ($this->db->table_exists('mailer_contacts2_check')) {
+            // table exists
+        } else {
+            $this->db->query('CREATE TABLE IF NOT EXISTS `mailer_contacts2_check` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(200) NOT NULL,
+  `mailer_contact_id` varchar(50) NOT NULL,
+  `status` varchar(500) NOT NULL,
+  `datetime` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1242 ;');
+        }
+
+
+        if ($this->db->table_exists('mailer_contacts')) {
+            // table exists
+        } else {
+            $this->db->query('CREATE TABLE IF NOT EXISTS `mailer_contacts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(200) NOT NULL,
+  `first_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
+  `mailer_list_id` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `datetime` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;');
+        }
+
+        if ($this->db->table_exists('mailer_list')) {
+            // table exists
+        } else {
+            $this->db->query('CREATE TABLE IF NOT EXISTS `mailer_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `m_id` varchar(100) DEFAULT NULL,
+  `name` varchar(250) DEFAULT NULL,
+  `datetime` varchar(100) DEFAULT NULL,
+  `member_count` varchar(50) NOT NULL,
+  `display_index` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;');
+        }
     }
 
 }
