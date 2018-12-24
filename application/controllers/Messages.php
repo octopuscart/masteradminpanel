@@ -406,7 +406,7 @@ class Messages extends CI_Controller {
 
 
         if (isset($_GET['sendmail'])) {
-            $emailtemplate = $this->load->view('mailtemplate/template2', $order_details, true);
+            $emailtemplate = $this->load->view('mailtemplate/template3', $order_details, true);
             $subject = email_sender_name . " Wishing You Merry Christmas and Happy New Year!";
             foreach ($contactdata as $key => $value) {
                 $emailaddr = $value['email'];
