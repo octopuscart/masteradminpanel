@@ -81,7 +81,7 @@ $this->load->view('layout/layoutTop');
                                 <textarea id="compose-textarea" name="emailtemplate" class="form-control" style="height: 200px"><?php
                                     switch ($lattertype) {
                                         case "1":
-                                            echo $html = $this->load->view('mailtemplate/template1', $order_details, true);
+                                            echo $html = $this->load->view('mailtemplate/template3', $order_details, true);
 
                                             break;
                                         case "2":
