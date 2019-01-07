@@ -52,7 +52,7 @@
                     <table class="table-inner" width="600" border="0" align="center" cellpadding="0" cellspacing="0">
                         <tr>
                             <td align="center" style="line-height: 0px;">
-                                <img style="display:block; line-height:0px; font-size:0px; border:0px;height:150px; ;" src="https://www.royaltailor.hk/assets/images/logo73.png" alt="logo" />
+                                <img style="display:block; line-height:0px; font-size:0px; border:0px;height:150px; ;" src="<?php echo site_logo;?>" alt="logo" />
                             </td>
                         </tr>
                         
@@ -99,8 +99,7 @@
                                     <!--img-->
                                     <tr>
                                         <td align="center" style="line-height: 0px;">
-                                            <a href="https://www.royaltailor.hk/" target="_blank" style="color:#fff">
-                                            <img style="display:block; line-height:0px; font-size:0px; border:0px;border-radius: 30px;" class="img1" src="https://costcointernational.com/royalfiles/template/newletter1.jpg" alt="img" width="100%" height="auto" />
+                                            <a href="<?php echo siteurl;?>" target="_blank" style="color:#fff">
                                             </a>
                                         </td>
                                     </tr>
