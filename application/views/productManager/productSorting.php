@@ -214,7 +214,7 @@ $this->load->view('layout/layoutFooter');
                                                         "category_string2": "Main Category",
                                                         "category": {'parent_id': '0', 'category_name': '', 'description': '', 'id': ''},
                                                         "operation": "Add Category",
-                                                        "selected_category": 44
+                                                        "selected_category": 0
                                                     };
                                                     var url = "<?php echo base_url(); ?>index.php/ProductManager/category_api";
                                                     $http.get(url).then(function (rdata) {
@@ -287,7 +287,7 @@ $this->load->view('layout/layoutFooter');
                                                         "category_string2": "Main Category",
                                                         "category": {'parent_id': '0', 'category_name': '', 'description': '', 'id': ''},
                                                         "operation": "Add Category",
-                                                        "selected_category": 44
+                                                        "selected_category": 0
                                                     };
                                                     $(document).on("click", "#using_json_3 [selectcategory]", function (event) {
                                                         var catid = $(this).attr("selectcategory");
