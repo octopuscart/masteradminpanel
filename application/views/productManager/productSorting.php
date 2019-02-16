@@ -106,7 +106,7 @@ $this->load->view('layout/layoutTop');
                                     title:searchproduct
                                     }">
                             <div class="thumbnail">
-                                <img src="{{product.image}}" alt="...">
+                                <img src="{{product.image}}" alt="..." style="height: 150px">
                                 <div class="caption">
                                     <h3>{{product.title}}</h3>
                                     <p>
