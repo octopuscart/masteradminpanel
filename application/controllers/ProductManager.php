@@ -800,7 +800,7 @@ class ProductManager extends CI_Controller {
         foreach ($product_result as $rkey => $rvalue) {
             $imageurl = "";
             if (count($product_folders)) {
-                $imageurl = product_image_base . str_replace("folder", $rvalue['folder'], $product_folders[0]);
+                $imageurl = product_image_base . str_replace("folder", $rvalue->folder, $product_folders[0]);
             }
             $rvalue['image'] = $imageurl;
             array_push($productarray, $rvalue);
