@@ -802,7 +802,7 @@ class ProductManager extends CI_Controller {
             if (count($product_folders)) {
                 $imageurl = product_image_base . str_replace("folder", $rvalue->folder, $product_folders[0]);
             }
-            $rvalue['image'] = $imageurl;
+            $rvalue->image = $imageurl;
             array_push($productarray, $rvalue);
         }
         
