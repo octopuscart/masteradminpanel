@@ -473,12 +473,6 @@ class Configuration extends CI_Controller {
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;');
         }
 
-        if ($this->db->field_exists('hotel', 'appointment_list')) {
-            // table exists
-        } else {
-            $this->db->query('ALTER TABLE `appointment_list` ADD `hotel` VARCHAR(200) NOT NULL AFTER `contact_no`, ADD `address` VARCHAR(300) NOT NULL AFTER `hotel`, ADD `city_state` VARCHAR(200) NOT NULL AFTER `address`, ADD `country` VARCHAR(200) NOT NULL AFTER `city_state`;');
-        }
-
         
         if ($this->db->table_exists('appointment_list')) {
             // table exists
@@ -502,6 +496,15 @@ class Configuration extends CI_Controller {
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;');
         }
+        
+        
+        if ($this->db->field_exists('hotel', 'appointment_list')) {
+            // table exists
+        } else {
+            $this->db->query('ALTER TABLE `appointment_list` ADD `hotel` VARCHAR(200) NOT NULL AFTER `contact_no`, ADD `address` VARCHAR(300) NOT NULL AFTER `hotel`, ADD `city_state` VARCHAR(200) NOT NULL AFTER `address`, ADD `country` VARCHAR(200) NOT NULL AFTER `city_state`;');
+        }
+
+        
         
 
         if ($this->db->table_exists('appointment_entry')) {
