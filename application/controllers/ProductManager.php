@@ -793,7 +793,23 @@ class ProductManager extends CI_Controller {
         $sqldata = "select *, 'false' as checked from products where category_id in ($categoriesString) and status =1 order by display_index desc";
         $query = $this->db->query($sqldata);
         $product_result = $query->result();
-        $productListFinal = $product_result; //array_slice($product_result, $endp, 16);
+        
+        $productarray = array();
+        $product_folders = explode(", ", product_folders);
+            
+        foreach ($product_result as $rkey => $rvalue) {
+            $imageurl = "";
+            if (count($product_folders)) {
+                $imageurl = product_image_base . str_replace("folder", $rvalue['folder'], $product_folders[0]);
+            }
+            $rvalue['image'] = $imageurl;
+            array_push($productarray, $rvalue);
+        }
+        
+        
+        
+        
+        $productListFinal = $productarray; //array_slice($product_result, $endp, 16);
         $productarray = array("total_products" => count($product_result), "products" => $productListFinal);
         echo json_encode($productarray);
     }
