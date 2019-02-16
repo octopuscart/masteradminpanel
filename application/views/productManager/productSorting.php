@@ -106,7 +106,7 @@ $this->load->view('layout/layoutTop');
                                     title:searchproduct
                                     }">
                             <div class="thumbnail">
-                                <img src="<?php echo product_image_base; ?>/coman/output/{{product.folder}}/fabricx20001.png" alt="...">
+                                <img src="{{product.image}}" alt="...">
                                 <div class="caption">
                                     <h3>{{product.title}}</h3>
                                     <p>
