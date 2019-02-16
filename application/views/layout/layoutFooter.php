@@ -207,6 +207,10 @@
 
 <!-- jQuery 3 -->
 <script src="<?php echo base_url(); ?>assets_main/bower_components/jquery/dist/jquery.min.js"></script>
+
+<script src="<?php echo base_url(); ?>assets_main/bower_components/jquery/dist/jquery-2.1.0.min.js"></script> <!-- jQuery Library Import -->
+
+
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url(); ?>assets_main/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->

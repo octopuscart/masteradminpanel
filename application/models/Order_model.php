@@ -187,7 +187,7 @@ class Order_model extends CI_Model {
         }
     }
 
-    function order_pdf($order_id, $subject = "") {
+    function order_pdf($order_id, $subject = "") {  
         setlocale(LC_MONETARY, 'en_US');
         $order_details = $this->getOrderDetails($order_id, 0);
         if ($order_details) {

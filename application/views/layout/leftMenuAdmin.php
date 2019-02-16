@@ -143,6 +143,13 @@ function checkPermission($session_data) {
                                 <i class="active fa fa-plus "></i> <span>Items Prices</span>
                             </a>
                         </li>  
+                        
+                        
+                        <li>
+                            <a href="<?php echo base_url(); ?>index.php/ProductManager/productSorting">
+                                <i class="active fa fa-plus "></i> <span>Product Sorting</span>
+                            </a>
+                        </li>  
 
                         <?php
                         if ($session_data['user_type'] == 'Developer') {

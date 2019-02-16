@@ -454,6 +454,9 @@ class Configuration extends CI_Controller {
         }
 
 
+
+
+
         if ($this->db->table_exists('mailer_contacts2')) {
             // table exists
         } else {
@@ -475,6 +478,37 @@ class Configuration extends CI_Controller {
         } else {
             $this->db->query('ALTER TABLE `appointment_list` ADD `hotel` VARCHAR(200) NOT NULL AFTER `contact_no`, ADD `address` VARCHAR(300) NOT NULL AFTER `hotel`, ADD `city_state` VARCHAR(200) NOT NULL AFTER `address`, ADD `country` VARCHAR(200) NOT NULL AFTER `city_state`;');
         }
+
+
+        if ($this->db->table_exists('appointment_entry')) {
+            // table exists
+        } else {
+            $this->db->query('CREATE TABLE IF NOT EXISTS `appointment_entry` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `aid` varchar(10) NOT NULL,
+  `country` varchar(100) NOT NULL,
+  `city_state` varchar(100) NOT NULL,
+  `appointment_type` varchar(50) NOT NULL,
+  `hotel` varchar(200) NOT NULL,
+  `address` varchar(250) NOT NULL,
+  `days` varchar(200) NOT NULL,
+  `start_date` varchar(100) NOT NULL,
+  `end_date` varchar(100) NOT NULL,
+  `contact_no` varchar(50) NOT NULL,
+  `date` varchar(100) NOT NULL,
+  `from_time` varchar(100) NOT NULL,
+  `to_time` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;');
+        }
+        
+        if ($this->db->field_exists('display_index', 'category')) {
+            // table exists
+        } else {
+            $this->db->query('ALTER TABLE `category` ADD `display_index` INT NOT NULL AFTER `parent_id`;');
+        }
+        
+        
     }
 
 }

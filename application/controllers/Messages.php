@@ -211,21 +211,21 @@ class Messages extends CI_Controller {
 
         $ignore = $emailcheck;
 //        $ignore = [];
-        
+
         $this->db->where('status', 1);
         $this->db->where('mailer_list_id', $list_id);
-        
+
         if (count($ignore)) {
             $this->db->where_not_in('mailer_contacts2.email', $ignore);
         }
         $this->db->group_by('email');
-        
+
         $query = $this->db->get('mailer_contacts2');
-        
+
         $contactdata = $query->result_array();
-        
+
 //        $contactdata = array_chunk($contactdata, 10)[0];
-        
+
 
         $this->load->library('parser');
         $this->load->library('email');
@@ -237,7 +237,7 @@ class Messages extends CI_Controller {
         $mailerconf = $query->row();
 
 
-       // sendgrid setting
+        // sendgrid setting
         $this->email->initialize(array(
             'protocol' => 'smtp',
             'smtp_host' => $mailerconf->smtp_server,
@@ -247,7 +247,7 @@ class Messages extends CI_Controller {
             'crlf' => "\r\n",
             'newline' => "\r\n"
         ));
-       
+
 //        //Amazon
 //        $this->email->initialize(array(
 //            'protocol' => 'smtp',
@@ -259,8 +259,8 @@ class Messages extends CI_Controller {
 //            'newline' => "\r\n"
 //        ));
 
-        
-        
+
+
 
 
 
@@ -289,9 +289,9 @@ class Messages extends CI_Controller {
                 $this->email->to($emailaddr);
                 $this->email->subject($subject);
                 $this->email->message($ftemplate);
-                $mstatus=1;
+                $mstatus = 1;
                 $checksend = $this->email->send();
-                
+
                 if ($checksend) {
                     $mstatus = "Send";
                 } else {
@@ -331,7 +331,7 @@ class Messages extends CI_Controller {
 
         $this->load->view('Email/sendtemplate', $data);
     }
-    
+
     public function sendMailThirdPartyApi($list_id, $lattertype) {
 
         $this->db->where('id', $list_id);
@@ -355,18 +355,18 @@ class Messages extends CI_Controller {
         $ignore = $emailcheck;
         $this->db->where('status', 1);
         $this->db->where('mailer_list_id', $list_id);
-        
+
         if (count($ignore)) {
             $this->db->where_not_in('mailer_contacts2.email', $ignore);
         }
         $this->db->group_by('email');
-        
+
         $query = $this->db->get('mailer_contacts2');
-        
+
         $contactdata = $query->result_array();
-        
+
         $contactdata = array_chunk($contactdata, 10)[0];
-        
+
 
         $this->load->library('parser');
         $this->load->library('email');
@@ -417,8 +417,8 @@ class Messages extends CI_Controller {
                 $this->email->to($emailaddr);
                 $this->email->subject($subject);
                 $this->email->message($ftemplate);
-                $mstatus=1;
-               // print_r($ftemplate);
+                $mstatus = 1;
+                // print_r($ftemplate);
                 $checksend = $this->email->send();
                 if ($checksend) {
                     $mstatus = "Send";
@@ -439,7 +439,7 @@ class Messages extends CI_Controller {
         }
 
 
-        
+
 
         $this->load->view('Email/sendtemplate', $data);
     }
@@ -484,7 +484,7 @@ class Messages extends CI_Controller {
         $this->email->message('Hello this CC Tailor Newsletter Hong Kong');
         $this->email->send();
 
-         $this->email->print_debugger();
+        $this->email->print_debugger();
     }
 
     public function sendMailChimpSingleMail($param) {
@@ -523,11 +523,41 @@ class Messages extends CI_Controller {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $result = curl_exec($ch);
-       
+
         curl_close($ch);
 
         $data = json_decode($result);
         echo "Status = " . $data->status . "\n";
+    }
+
+    public function sendSingleEmailSES() {
+        $this->load->library('email');
+        echo $receiver_email ="tailor123hk@gmail.com";
+        //sendgrid setting
+       
+
+        //sendgrid setting
+        $this->email->initialize(array(
+            'protocol' => 'smtp',
+            'smtp_host' => "email-smtp.us-east-1.amazonaws.com",
+            'smtp_user' => "AKIAJ7ZMGRUKW7V2XT6Q",
+            'smtp_pass' => "BIbmB62Cc5ZHxYS6yv7/Bw3YSfA1rx0rAT1FxRn7Jt+A",
+            'smtp_port' => 587,
+            'crlf' => "\r\n",
+            'newline' => "\r\n",
+            "smtp_crypto"=>"tls",
+        ));
+
+
+
+
+        $this->email->from(email_bcc, email_sender_name);
+        $this->email->to($receiver_email);
+        $this->email->subject('Email from SES');
+        $this->email->message('Hello this Mail from SES');
+        echo $this->email->send();
+        print "hello";
+        print_r($this->email->print_debugger());
     }
 
 }

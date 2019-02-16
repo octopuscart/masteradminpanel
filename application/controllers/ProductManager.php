@@ -25,7 +25,9 @@ class ProductManager extends CI_Controller {
     public function category_api() {
         $this->db->select('c.id as id, c.category_name as text, p.id as parent, c.description');
         $this->db->join('category as p', 'p.id = c.parent_id', 'left');
+        
         $this->db->from('category as c');
+        $this->db->order_by('c.display_index  desc');
         $query = $this->db->get();
         $result = $query->result();
         $category = array();
@@ -688,11 +690,11 @@ class ProductManager extends CI_Controller {
 
             $productattr = $this->Product_model->productAttributes($pvalue['id']);
             $colorbutton = "<button class='btn btn-default btn-xs btn-block'>Add/Change</button>";
-           $temparray['color'] =  "$colorbutton";
-            if(count($productattr)){
-                $temparray['color'] = "<span class='colorbox' title='".$productattr[0]['attribute_value']."' style='background:".$productattr[0]['additional_value']."'>".$productattr[0]['attribute_value']."</span><br/>$colorbutton";
+            $temparray['color'] = "$colorbutton";
+            if (count($productattr)) {
+                $temparray['color'] = "<span class='colorbox' title='" . $productattr[0]['attribute_value'] . "' style='background:" . $productattr[0]['additional_value'] . "'>" . $productattr[0]['attribute_value'] . "</span><br/>$colorbutton";
             }
-            
+
 
             $pricetable = '<table class="sub_item_table">';
 
@@ -759,6 +761,55 @@ class ProductManager extends CI_Controller {
             redirect('ProductManager/add_sliders');
         }
         $this->load->view('productManager/add_sliders', $data);
+    }
+
+    public function productSortingChangeIndexApi($id, $displayindex) {
+        $this->db->set('display_index', ($displayindex));
+        $this->db->where('id', $id);
+        $this->db->update('products');
+    }
+
+    public function productSortingChangeStatusApi($id, $status) {
+        $this->db->set('status', $status);
+        $this->db->where('id', $id);
+        $this->db->update('products');
+    }
+
+    public function productSortingApi($category_id) {
+        $startp = $this->input->get('start_page');
+        $endp = $this->input->get('end_page');
+        if ($endp) {
+            
+        } else {
+            $endp = 0;
+        }
+        if ($category_id) {
+            
+        } else {
+            $category_id = 0;
+        }
+        $categoriesString = $this->Product_model->stringCategories($category_id) . ", " . $category_id;
+        $categoriesString = ltrim($categoriesString, ", ");
+        $sqldata = "select *, 'false' as checked from products where category_id in ($categoriesString) and status =1 order by display_index desc";
+        $query = $this->db->query($sqldata);
+        $product_result = $query->result();
+        $productListFinal = $product_result; //array_slice($product_result, $endp, 16);
+        $productarray = array("total_products" => count($product_result), "products" => $productListFinal);
+        echo json_encode($productarray);
+    }
+
+    function productSorting() {
+
+        if (isset($_POST['apply_category'])) {
+            $productids = $this->input->post('product_id');
+            $this->db->set('category_id', $this->input->post('category_id'));
+            $this->db->where_in('id', $productids);
+            $this->db->update('products');
+        }
+
+
+        $data['product_model'] = $product_model;
+        $this->load->view('productManager/productSorting', $data);
     }
 
 }
