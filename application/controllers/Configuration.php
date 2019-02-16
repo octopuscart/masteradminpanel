@@ -479,6 +479,30 @@ class Configuration extends CI_Controller {
             $this->db->query('ALTER TABLE `appointment_list` ADD `hotel` VARCHAR(200) NOT NULL AFTER `contact_no`, ADD `address` VARCHAR(300) NOT NULL AFTER `hotel`, ADD `city_state` VARCHAR(200) NOT NULL AFTER `address`, ADD `country` VARCHAR(200) NOT NULL AFTER `city_state`;');
         }
 
+        
+        if ($this->db->table_exists('appointment_list')) {
+            // table exists
+        } else {
+            $this->db->query('CREATE TABLE IF NOT EXISTS `appointment_list` (
+  `id` int(122) NOT NULL AUTO_INCREMENT,
+  `select_date` varchar(122) NOT NULL,
+  `select_time` varchar(122) NOT NULL,
+  `first_name` varchar(122) NOT NULL,
+  `no_of_person` varchar(30) NOT NULL,
+  `last_name` varchar(122) NOT NULL,
+  `email` varchar(122) NOT NULL,
+  `contact_no` varchar(122) NOT NULL,
+  `hotel` varchar(200) NOT NULL,
+  `address` varchar(300) NOT NULL,
+  `city_state` varchar(200) NOT NULL,
+  `country` varchar(200) NOT NULL,
+  `referral` varchar(122) NOT NULL,
+  `datetime` varchar(122) NOT NULL,
+  `appointment_type` varchar(122) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;');
+        }
+        
 
         if ($this->db->table_exists('appointment_entry')) {
             // table exists
