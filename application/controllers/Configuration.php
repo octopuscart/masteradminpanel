@@ -542,6 +542,24 @@ class Configuration extends CI_Controller {
         }
         
         
+        if ($this->db->table_exists('configuration_cartcheckout')) {
+            // table exists
+        } else {
+            $this->db->query('CREATE TABLE `configuration_cartcheckout` (
+  `id` int(11) NOT NULL,
+  `product_path_pre` varchar(200) NOT NULL,
+  `product_path_post` varchar(200) NOT NULL,
+  `payment_paypal` varchar(10) NOT NULL,
+  `payment_bank` varchar(10) NOT NULL,
+  `payment_cheque` varchar(10) NOT NULL,
+  `payment_cod` varchar(10) NOT NULL,
+  `default_payment_mode` varchar(50) NOT NULL,
+  `gift_coupon` varchar(10) NOT NULL,
+  `order_prefix` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;');
+        }
+        
+        
     }
 
 }
