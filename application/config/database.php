@@ -68,7 +68,7 @@ $db['default'] = array(
 	'username' => 'j2k5e6r5_octopus',
 	'password' => 'India$2017',
 
-	'database' => 'j2k5e6r5_haristailor',
+	'database' => 'j2k5e6r5_costcokart',
 
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
