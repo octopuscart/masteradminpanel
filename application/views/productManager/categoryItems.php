@@ -98,7 +98,7 @@ $this->load->view('layout/layoutTop');
                         foreach ($category_items as $key => $value) {
                             ?>
                             <tr class="item_headers items_row">
-                                <th colspan="3">
+                                <th colspan="2">
                                     <?php echo $value->category_name; ?>
                                 </th>
                                 <td>
@@ -124,6 +124,7 @@ $this->load->view('layout/layoutTop');
                                                 <input  name='item_price' value='<?php echo $cvalue->price; ?>' style='width: 100px;'>
                                                 <input type='hidden' name='item_id' value='<?php echo $cvalue->id; ?>'>
                                                 <button type='submit' class='btn btn-warning btn-sm' name='update_price' value='<?php echo $cvalue->id; ?>' style='    margin-top: -4px;'><i class='fa fa-edit'></i> Update</button>
+                                                <button type='submit' class='btn btn-danger btn-sm' name='delete_price' value='<?php echo $cvalue->id; ?>' style='    margin-top: -4px;'><i class='fa fa-trash'></i> Delete</button>
                                             </form>
                                         </td>
                                         <td></td>

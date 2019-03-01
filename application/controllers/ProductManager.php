@@ -25,7 +25,7 @@ class ProductManager extends CI_Controller {
     public function category_api() {
         $this->db->select('c.id as id, c.category_name as text, p.id as parent, c.description');
         $this->db->join('category as p', 'p.id = c.parent_id', 'left');
-        
+
         $this->db->from('category as c');
         $this->db->order_by('c.display_index  desc');
         $query = $this->db->get();
@@ -100,6 +100,15 @@ class ProductManager extends CI_Controller {
         if (isset($_POST['delete_category'])) {
             $this->db->where('id', $this->input->post('category_id'));
             $this->db->delete('category_items');
+            redirect('ProductManager/categoryItems');
+        }
+
+
+        if (isset($_POST['delete_price'])) {
+            $p_item_id = $this->input->post('item_id');
+            $p_item_price = $this->input->post('item_price');
+            $this->db->where('id', $p_item_id);
+            $this->db->delete('custome_items_price');
             redirect('ProductManager/categoryItems');
         }
 
@@ -554,7 +563,7 @@ class ProductManager extends CI_Controller {
             }
 
             $user_id = $this->session->userdata('logged_in')['login_id'];
-
+            $this->db->set('category_items_id', $this->input->post('category_items_id'));
             $this->db->set('category_id', $this->input->post('category_name'));
             $this->db->set('description', $this->input->post('description'));
             $this->db->set('title', $this->input->post('title'));
@@ -793,10 +802,10 @@ class ProductManager extends CI_Controller {
         $sqldata = "select *, 'false' as checked from products where category_id in ($categoriesString) and status =1 order by display_index desc";
         $query = $this->db->query($sqldata);
         $product_result = $query->result();
-        
+
         $productarray = array();
         $product_folders = explode(", ", product_folders);
-            
+
         foreach ($product_result as $rkey => $rvalue) {
             $imageurl = "";
             if (count($product_folders)) {
@@ -805,10 +814,10 @@ class ProductManager extends CI_Controller {
             $rvalue->image = $imageurl;
             array_push($productarray, $rvalue);
         }
-        
-        
-        
-        
+
+
+
+
         $productListFinal = $productarray; //array_slice($product_result, $endp, 16);
         $productarray = array("total_products" => count($product_result), "products" => $productListFinal);
         echo json_encode($productarray);
