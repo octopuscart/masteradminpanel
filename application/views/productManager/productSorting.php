@@ -122,7 +122,7 @@ $this->load->view('layout/layoutTop');
                                     </div><!-- /input-group -->
                                     </p>
                                     <p>
-                                        {{product.checked}}
+                                   
                                     <div class="btn-group btn-group-sm" style="width: 100%">
                                         <button type="button" class="btn btn-default dropdown-toggle btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Action <span class="caret"></span>
